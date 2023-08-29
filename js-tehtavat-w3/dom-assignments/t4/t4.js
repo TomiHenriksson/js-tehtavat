@@ -771,3 +771,41 @@ const restaurants = [
 ];
 
 // your code here
+function laskeEtaisyys(x1, y1, x2, y2) {
+  const distance = Math.sqrt((x2 - x1)^2 + (y2 - y1)^2)
+  return distance
+}
+
+const options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+};
+
+function error(err) {
+  console.warn(`ERROR(${err.code}): ${err.message}`);
+}
+
+function success(pos) {
+  const crd = pos.coords;
+  const x1 = crd.latitude;
+  const y1 = crd.longitude;
+  restaurants.sort(function(a, b){
+    const x2A = a.location.coordinates[1];
+    const y2A = a.location.coordinates[0];
+    const etaisuusA = laskeEtaisyys(x1, y1, x2A, y2A);
+    console.log(etaisuusA);
+
+    const x2B = b.location.coordinates[1];
+    const y2B = b.location.coordinates[0];
+    const etaisuusB = laskeEtaisyys(x1, y1, x2B, y2B);
+    console.log(etaisuusB);
+
+    return etaisuusA - etaisuusB
+  });
+
+  console.log(restaurants);
+}
+
+
+navigator.geolocation.getCurrentPosition(success, error, options);

@@ -1,6 +1,6 @@
-numbers = [];
+const numbers = [];
 
-k = 1;
+let k = 1;
 
 while (k>0) {
     v = +prompt('enter a positive number or enter 0 to stop: ');
