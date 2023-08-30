@@ -32,18 +32,30 @@ const todoList = [
 const ul = document.querySelector('ul');
 
 const todoItems = todoList.map(todo =>`
-  <li>
+  <li id="li-${todo.id}">
     <input type="checkbox" id="todo-${todo.id}" ${todo.completed ? 'checked' : ''}>
     <label for="todo-${todo.id}">${todo.task}</label>
+    <button id="button${todo.id}">delete</button>
   </li>
 `).join('')
 
 ul.insertAdjacentHTML('afterbegin', todoItems);
 
-
 todoList.forEach(function(todo){
   document.getElementById(`todo-${todo.id}`).addEventListener('click', function() {
     todo.completed = !todo.completed;
-    // console.log(todo.completed);
+    console.log(todoList);
   })
-})
+ })
+
+ todoList.forEach(function(todo){
+  document.getElementById(`button${todo.id}`).addEventListener('click', function(){
+    console.log(todo.id)
+    if (ul.hasChildNodes()) {
+      ul.removeChild(ul.children[todo.id-1]);
+    }
+    // ul.removeChild(ul.firstElementChild);
+    
+
+  })
+ })
