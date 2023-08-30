@@ -38,5 +38,12 @@ const todoItems = todoList.map(todo =>`
   </li>
 `).join('')
 
-
 ul.insertAdjacentHTML('afterbegin', todoItems);
+
+
+todoList.forEach(function(todo){
+  document.getElementById(`todo-${todo.id}`).addEventListener('click', function() {
+    todo.completed = !todo.completed;
+    // console.log(todo.completed);
+  })
+})
