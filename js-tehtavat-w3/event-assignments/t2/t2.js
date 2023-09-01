@@ -771,3 +771,73 @@ const restaurants = [
 ];
 
 // your code here
+
+restaurants.sort((a, b) => a.name.localeCompare(b.name));
+const dialog = document.getElementById('info');
+
+function displayRestaurants() {
+    const table = document.querySelector("table");
+
+    for (let i = 0; i < restaurants.length; i++) {
+        const row = table.insertRow(-1); 
+        const cell1 = row.insertCell(0); 
+        cell1.textContent = restaurants[i].name; 
+
+        const cell2 = row.insertCell(1); 
+        cell2.textContent = restaurants[i].address; 
+    }
+}
+
+displayRestaurants();
+
+document.querySelector("table").addEventListener("click", function(event) {
+  if(event.target.tagName === 'TD' && event.target.parentNode.tagName === 'TR') {
+      const highlightedRows = this.querySelectorAll(".highlight");
+      highlightedRows.forEach(row => {
+          row.classList.remove('highlight');
+      });
+
+      event.target.parentNode.classList.add('highlight');
+
+      const rowIndex = Array.from(this.rows).indexOf(event.target.parentNode) - 1;
+      const restaurant = restaurants[rowIndex];
+
+      populateAndShowDialog(restaurant);
+  }
+});
+
+
+function populateAndShowDialog(restaurant) {
+  dialog.innerHTML = '';
+
+  const name = document.createElement('h2');
+  name.textContent = restaurant.name;
+  dialog.appendChild(name);
+
+  const address = document.createElement('p');
+  address.innerHTML = `<strong>Address:</strong> ${restaurant.address}`;
+  dialog.appendChild(address);
+
+  const postalCode = document.createElement('p');
+  postalCode.innerHTML = `<strong>Postal Code:</strong> ${restaurant.postalCode || 'N/A'}`;
+  dialog.appendChild(postalCode);
+
+  const city = document.createElement('p');
+  city.innerHTML = `<strong>City:</strong> ${restaurant.city || 'N/A'}`;
+  dialog.appendChild(city);
+
+  const phone = document.createElement('p');
+  phone.innerHTML = `<strong>Phone Number:</strong> ${restaurant.phone || 'N/A'}`;
+  dialog.appendChild(phone);
+
+  const company = document.createElement('p');
+  company.innerHTML = `<strong>Company:</strong> ${restaurant.company || 'N/A'}`;
+  dialog.appendChild(company);
+
+  const closeButton = document.createElement('button');
+  closeButton.textContent = 'Close';
+  closeButton.addEventListener('click', () => dialog.close());
+  dialog.appendChild(closeButton);
+
+  dialog.showModal();
+}
