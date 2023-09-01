@@ -804,7 +804,24 @@ function success(pos) {
     return etaisuusA - etaisuusB
   });
 
-  console.log(restaurants);
+  // console.log(restaurants);
+
+  function displayRestaurants() {
+    const table = document.querySelector("table");
+
+    restaurants.forEach(function(restaurant) {
+        const row = table.insertRow();  // This creates a new row and appends it to the table
+
+        const nameCell = row.insertCell(0);  // This creates a cell in the row
+        nameCell.textContent = restaurant.name;
+        
+        const addressCell = row.insertCell(1);  // This creates another cell in the row
+        addressCell.textContent = restaurant.address;
+    });
+}
+
+displayRestaurants();
+
 }
 
 
