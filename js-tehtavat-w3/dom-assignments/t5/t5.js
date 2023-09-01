@@ -771,3 +771,13 @@ const restaurants = [
 ];
 
 // your code here
+
+const map = L.map('map').setView([60.221729, 24.903147], 13); // These coordinates are centered around Helsinki.
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+restaurants.forEach(function(restaurant) {
+  const marker = L.marker(restaurant.location.coordinates.slice().reverse()).addTo(map);
+  marker.bindPopup('<h3>' + restaurant.name + '</h3><p>' + restaurant.address + '</p>');
+});
+
+K
