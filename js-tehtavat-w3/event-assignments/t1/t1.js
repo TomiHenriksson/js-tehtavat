@@ -29,10 +29,8 @@ const todoList = [
 
 // add your code here
 
-// Variable to keep track of the next unique ID
 let nextTodoId = todoList.length + 1;
 
-// Function to render the todo list
 function renderTodoList() {
   const todoItems = todoList.map(function(todo) {
     return `
@@ -46,13 +44,10 @@ function renderTodoList() {
   ul.innerHTML = todoItems;
 }
 
-// Initial rendering of the todo list
 const ul = document.querySelector('ul');
 renderTodoList();
 
-// Event delegation for marking tasks as completed and deleting tasks
 ul.addEventListener('click', function(event) {
-  // Checkbox event
   if (event.target.tagName === 'INPUT' && event.target.id.startsWith('todo-')) {
     const id = parseInt(event.target.id.replace('todo-', ''), 10);
     const todo = todoList.find(function(item) {
@@ -63,7 +58,6 @@ ul.addEventListener('click', function(event) {
       console.log(todoList);
     }
   }
-  // Delete button event
   else if (event.target.tagName === 'BUTTON' && event.target.id.startsWith('button')) {
     const id = parseInt(event.target.id.replace('button', ''), 10);
     const index = todoList.findIndex(function(item) {
@@ -71,13 +65,13 @@ ul.addEventListener('click', function(event) {
     });
     if (index !== -1) {
       todoList.splice(index, 1);
-      renderTodoList(); // Update the UI after deletion
+      renderTodoList();
       console.log(todoList);
     }
   }
 });
 
-// Modal and "Add Todo Item" button logic
+
 const modal = document.querySelector('dialog');
 const addButton = document.querySelector('.add-btn');
 const form = modal.querySelector('form');
@@ -98,7 +92,7 @@ form.addEventListener('submit', function(event) {
       completed: false
     };
     todoList.push(newTodo);
-    renderTodoList(); // Update the UI with the new item
+    renderTodoList(); 
     modal.close();
     input.value = '';
     console.log(todoList);
