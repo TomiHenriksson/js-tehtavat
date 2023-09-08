@@ -1,0 +1,38 @@
+@font-face {
+    font-family: 'OswaldVF';
+    src: url('./Oswald-VariableFont_wght.ttf') format('truetype');
+}
+
+body {
+    font-family: 'OswaldVF', sans-serif;
+    background-image: url('./pngtreesimple-background-of-multiple-color-gradient-app-interface-materials-png-image_392301.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  
+ 
+  html,
+  .fullscreen {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+  
+  
+  .container {
+    margin: auto;
+    text-align: center;
+  }
+  
+  .title {
+    font-size: 65px;
+  }
+
+  p {
+    font-size: 22px; 
+    margin: 0.5rem; 
+}
